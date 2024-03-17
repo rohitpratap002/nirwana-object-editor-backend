@@ -172,7 +172,7 @@ app.get('/process_images', async (req, res) => {
   }
 });
 
-app.get('uploads/final', async (req, res) => {
+app.get('uploads/final.png', async (req, res) => {
   const file = path.join(__dirname,"uploads/final.png")
   res.sendFile(file)
 });
