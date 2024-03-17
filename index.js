@@ -155,7 +155,7 @@ app.get('/process_images', async (req, res) => {
       console.log(data);
       const filePath = path.join(__dirname, '/uploads/final.png');
       // res.send(filePath)
-      res.send(`${BASE_URL}/uploads/final.png`)
+      res.send(`${BASE_URL}uploads/final.png`)
     });
 
     pythonProcess.stderr.on('data', (data) => {
