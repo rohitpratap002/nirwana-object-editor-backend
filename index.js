@@ -184,26 +184,20 @@ app.listen(port, () => {
   exec('pip install opencv-python', (error, stdout, stderr) => {
     if (error) {
       console.error(`Error installing Python module: ${error.message}`);
-      return res.status(500).send('Error installing Python module');
     }
     if (stderr) {
       console.error(`Error installing Python module: ${stderr}`);
-      return res.status(500).send('Error installing Python module');
     }
     console.log(`Python module installed: ${stdout}`);
-    res.send('Python module installed successfully');
   });
   exec('pip install Pillow', (error, stdout, stderr) => {
     if (error) {
       console.error(`Error installing Python module: ${error.message}`);
-      return res.status(500).send('Error installing Python module');
     }
     if (stderr) {
       console.error(`Error installing Python module: ${stderr}`);
-      return res.status(500).send('Error installing Python module');
     }
     console.log(`Python module installed: ${stdout}`);
-    res.send('Python module installed successfully');
   });
   console.log(`Server is running on ${BASE_URL}`);
 });
