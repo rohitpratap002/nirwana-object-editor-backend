@@ -177,6 +177,9 @@ app.get('/uploads/final.png', async (req, res) => {
   const file = path.join(__dirname,"uploads/final.png")
   res.sendFile(file)
 });
+app.get('/',  (req, res) => {
+  res.send("<h1>Hello Nirwana</h1>")
+});
 
 app.listen(port, () => {
   console.log(`Server is running on ${BASE_URL}`);
