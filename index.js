@@ -1,7 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { spawn } = require('child_process');
-const { log } = require('console');
+const { spawn, exec } = require('child_process');
 const path = require('path');
 const fs = require('fs')
 const axios = require('axios');
@@ -155,8 +154,8 @@ app.get('/process_images', async (req, res) => {
     pythonProcess.stdout.on('data', async (data) => {
       console.log(data);
       const filePath = path.join(__dirname, '/uploads/final.png');
-      // res.send(filePath)
-      res.send(`${BASE_URL}/uploads/final.png`)
+      res.send(filePath)
+      // res.send(`${BASE_URL}/uploads/final.png`)
     });
 
     pythonProcess.stderr.on('data', (data) => {
@@ -182,5 +181,29 @@ app.get('/',  (req, res) => {
 });
 
 app.listen(port, () => {
+  exec('pip install opencv-python', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error installing Python module: ${error.message}`);
+      return res.status(500).send('Error installing Python module');
+    }
+    if (stderr) {
+      console.error(`Error installing Python module: ${stderr}`);
+      return res.status(500).send('Error installing Python module');
+    }
+    console.log(`Python module installed: ${stdout}`);
+    res.send('Python module installed successfully');
+  });
+  exec('pip install Pillow', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error installing Python module: ${error.message}`);
+      return res.status(500).send('Error installing Python module');
+    }
+    if (stderr) {
+      console.error(`Error installing Python module: ${stderr}`);
+      return res.status(500).send('Error installing Python module');
+    }
+    console.log(`Python module installed: ${stdout}`);
+    res.send('Python module installed successfully');
+  });
   console.log(`Server is running on ${BASE_URL}`);
 });
