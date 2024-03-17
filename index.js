@@ -181,6 +181,14 @@ app.get('/',  (req, res) => {
 });
 
 app.listen(port, () => {
-  
+  exec('python -m pip install Pillow', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error installing Python module: ${error.message}`);
+    }
+    if (stderr) {
+      console.error(`Error installing Python module: ${stderr}`);
+    }
+    console.log(`Python module installed: ${stdout}`);
+  });
   console.log(`Server is running on ${BASE_URL}`);
 });
