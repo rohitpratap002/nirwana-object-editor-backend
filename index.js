@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { spawn,exec } = require('child_process');
+const { spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs')
 const axios = require('axios');
@@ -181,14 +181,6 @@ app.get('/',  (req, res) => {
 });
 
 app.listen(port, () => {
-  exec('python -V', (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error installing Python module: ${error.message}`);
-    }
-    if (stderr) {
-      console.error(`Error installing Python module: ${stderr}`);
-    }
-    console.log(`Python module installed: ${stdout}`);
-  });
+  
   console.log(`Server is running on ${BASE_URL}`);
 });
